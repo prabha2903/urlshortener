@@ -1,0 +1,145 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Base Styles ─────────────────────────────────────────── */
+@layer base {
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-dark-900 text-slate-100 font-body antialiased;
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(99,102,241,0.06) 0%, transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(139,92,246,0.04) 0%, transparent 50%);
+    min-height: 100vh;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-display;
+  }
+
+  /* Custom scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+  }
+  ::-webkit-scrollbar-track {
+    background: #0f1117;
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgba(99,102,241,0.4);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgba(99,102,241,0.6);
+  }
+}
+
+/* ─── Component Utilities ─────────────────────────────────── */
+@layer components {
+
+  /* Glassmorphism card base */
+  .glass-card {
+    @apply bg-surface-2 border border-white/[0.06] rounded-2xl backdrop-blur-sm;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.35), inset 0 0 0 1px rgba(255,255,255,0.04);
+  }
+
+  /* Gradient brand button */
+  .btn-brand {
+    @apply relative inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl font-display font-semibold text-sm text-white overflow-hidden transition-all duration-200;
+    background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+    box-shadow: 0 0 20px rgba(99,102,241,0.25);
+  }
+  .btn-brand:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 30px rgba(99,102,241,0.4);
+  }
+  .btn-brand:active {
+    transform: translateY(0);
+  }
+  .btn-brand:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+  }
+
+  /* Ghost button */
+  .btn-ghost {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl font-display font-medium text-sm text-slate-300 border border-white/10 transition-all duration-200;
+  }
+  .btn-ghost:hover {
+    @apply bg-white/5 border-white/20 text-white;
+  }
+
+  /* Danger button */
+  .btn-danger {
+    @apply inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl font-display font-medium text-sm text-rose-400 border border-rose-500/20 transition-all duration-200;
+  }
+  .btn-danger:hover {
+    @apply bg-rose-500/10 border-rose-500/40;
+  }
+
+  /* Form input */
+  .form-input {
+    @apply w-full bg-surface-1 border border-white/10 rounded-xl px-4 py-3 text-sm text-slate-100 placeholder-slate-500 outline-none transition-all duration-200 font-body;
+  }
+  .form-input:focus {
+    @apply border-brand-500/60 bg-surface-2;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.12);
+  }
+  .form-input:hover:not(:focus) {
+    @apply border-white/20;
+  }
+
+  /* Stat value display */
+  .stat-value {
+    @apply font-display font-bold text-white;
+  }
+
+  /* Shimmer skeleton animation */
+  .skeleton {
+    background: linear-gradient(
+      90deg,
+      rgba(255,255,255,0.04) 25%,
+      rgba(255,255,255,0.08) 50%,
+      rgba(255,255,255,0.04) 75%
+    );
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+  }
+
+  /* Sidebar nav link */
+  .nav-link {
+    @apply flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-display font-medium text-slate-400 transition-all duration-200 cursor-pointer;
+  }
+  .nav-link:hover {
+    @apply bg-white/5 text-slate-200;
+  }
+  .nav-link.active {
+    @apply bg-brand-600/20 text-brand-400;
+    box-shadow: inset 0 0 0 1px rgba(99,102,241,0.2);
+  }
+}
+
+/* ─── Utility Overrides ───────────────────────────────────── */
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(135deg, #818cf8 0%, #c084fc 50%, #22d3ee 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .border-gradient {
+    border-image: linear-gradient(135deg, rgba(99,102,241,0.5), rgba(139,92,246,0.3)) 1;
+  }
+
+  .no-scrollbar::-webkit-scrollbar { display: none; }
+  .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+}
