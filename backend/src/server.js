@@ -44,16 +44,15 @@ app.use(
       if (!origin) return callback(null, true);
 
       const allowedOrigins = [
-        "http://localhost:3000",   // React dev server
-        "http://localhost:5173",   // Vite dev server
-        "http://localhost:4200",   // Angular dev server
-        process.env.FRONTEND_URL,  // Production frontend URL
-      ].filter(Boolean); // Remove undefined values
+        "http://localhost:3000",
+        "http://localhost:5173",
+        "http://localhost:4200",
+        process.env.FRONTEND_URL,
+      ].filter(Boolean);
 
       if (allowedOrigins.includes(origin)) {
         callback(null, true);
       } else if (process.env.NODE_ENV === "development") {
-        // In development, allow all origins for easier testing
         callback(null, true);
       } else {
         callback(new Error(`CORS: Origin "${origin}" is not allowed`));
@@ -61,7 +60,7 @@ app.use(
     },
     methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    credentials: true,            // Allow cookies if needed
+    credentials: true,
   })
 );
 
