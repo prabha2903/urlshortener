@@ -23,7 +23,12 @@ import { generalLimiter } from "./middleware/rateLimitMiddleware.js";
 // -------------------------------------------------------
 const app = express();
 const PORT = process.env.PORT || 5000;
-
+app.get("/", (req, res) => {
+  res.json({
+    status: "success",
+    message: "URL Shortener API is running 🚀"
+  });
+});
 // -------------------------------------------------------
 // SECURITY MIDDLEWARE
 // -------------------------------------------------------
